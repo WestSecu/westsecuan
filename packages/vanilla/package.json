@@ -1,11 +1,11 @@
 {
-  "name": "@westsecuan/core",
+  "name": "@westsecuan/vanilla",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/index.umd.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "compile": "rm -rf dist/* && webpack --config webpack.pkg.js"
+    "compile": "rm -rf dist/* types/* && webpack --config webpack.pkg.js"
   },
   "repository": {
     "type": "git",
