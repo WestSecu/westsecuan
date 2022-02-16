@@ -1,0 +1,17 @@
+{
+  "name": "@westsecuan/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "compile": "rm -rf dist/* && webpack --config webpack.pkg.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.westresearch.west95582.com/Smart/frontend/XBDataAnalytic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

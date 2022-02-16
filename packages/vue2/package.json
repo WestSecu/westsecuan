@@ -1,0 +1,21 @@
+{
+  "name": "@westsecuan/vue2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {},
+  "scripts": {
+    "compile": "rm -rf dist/* && tsc -p tsconfig.pkg.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.westresearch.west95582.com/Smart/frontend/XBDataAnalytic.git"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@westsecuan/core": "~1.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
