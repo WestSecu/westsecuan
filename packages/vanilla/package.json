@@ -1,17 +1,22 @@
 {
   "name": "@westsecuan/vanilla",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.umd.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "compile": "rm -rf dist/* types/* && webpack --config webpack.pkg.js"
+    "rm": "rm -rf dist/* types/*",
+    "start": "npm run rm && webpack --config webpack.dev.js",
+    "compile": "npm run rm && webpack --config webpack.pkg.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.westresearch.west95582.com/Smart/frontend/XBDataAnalytic.git"
+    "url": "https://github.com/WestSecu/WestSecuAN.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT",
+  "peerDependencies": {
+    "sa-sdk-javascript": "^1.21.7"
+  }
 }

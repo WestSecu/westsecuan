@@ -11,6 +11,7 @@
     "module": "es6",
     "strict": true,
     "allowJs": true,
+    "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
