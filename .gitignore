@@ -4,5 +4,7 @@ node_modules
 # output
 dist
 types
+es
+lib
 coverage
 package-lock.json
