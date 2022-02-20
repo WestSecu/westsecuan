@@ -1,12 +1,16 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 22:25:13
- * @LastEditTime: 2022-02-18 00:45:58
+ * @LastEditTime: 2022-02-20 18:33:12
  * @LastEditors: 周长升
  * @Description:
  */
 import { State } from "../state";
-type Quick = (name: string, ...args: unknown[]) => void;
+import { logError } from "../utils";
+
+type Quick = (name: QuickName, ...args: unknown[]) => void;
+
+export type QuickName = "trackSPA" | "track" | "trackClick";
 
 /**
  * 追踪
@@ -14,12 +18,21 @@ type Quick = (name: string, ...args: unknown[]) => void;
  * @param args - 参数
  */
 export const quick: Quick = (name, ...args) => {
-  switch (State.sdk?.type) {
-    case "sensors":
-      {
-        // @ts-ignore
-        State.sdk?.ref.quick(name, ...args);
-      }
-      break;
+  try {
+    switch (State.sdk.type) {
+      case "sensors":
+        {
+          const quickName = {
+            trackSPA: "autoTrackSinglePage",
+            track: "autoTrack",
+            trackClick: "trackAllHeatMap"
+          }[name] ?? name;
+
+          State.sdk.syncRef?.quick(quickName, ...args);
+        }
+        break;
+    }
+  } catch (e) {
+    logError(e);
   }
 };

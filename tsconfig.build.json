@@ -3,20 +3,29 @@
     "**/*.test.ts",
     "**/*.stub.ts",
     "node_modules",
-    "dist"
+    "dist",
+    "es",
+    "lib"
   ],
   "compilerOptions": {
-    "outDir": "./dist/",
-    "target": "es5",
-    "module": "es6",
-    "strict": true,
-    "allowJs": true,
-    "sourceMap": true,
+    // "strict": true,
+    //"sourceMap": true,
+    // "forceConsistentCasingInFileNames": true,
+    // "declaration": true,
+
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "strictNullChecks": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "target": "es6",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
+    "allowJs": true,
+    "importsNotUsedAsValues": "preserve",
     "paths": {
       "@westsecuan/*": [
         "./packages/*"

@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "es",
+    "declaration": false,
+    "target": "ES6",
+    "sourceMap": false,
+    "module": "ESNext",
+    "esModuleInterop": false,
+    "removeComments": true
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-16 17:11:38
- * @LastEditTime: 2022-02-16 23:09:11
+ * @LastEditTime: 2022-02-18 13:39:53
  * @LastEditors: 周长升
  * @Description:
  */
@@ -10,7 +10,7 @@ const utilPackageName = require("../../utils/package-name");
 
 const path = require("path");
 
-const pkgName = utilPackageName(path.resolve(__dirname, "package.json"));
+const pkgName = utilPackageName(require(path.resolve(__dirname, "package.json")).name);
 
 function createConfig(options) {
   const outputPath = options.outputPath;

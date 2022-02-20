@@ -1,21 +1,34 @@
 {
   "name": "@westsecuan/vue2",
-  "version": "0.1.0",
+  "version": "0.6.0-alpha.0",
   "description": "",
-  "main": "dist/index.umd.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types",
+    "es",
+    "lib"
+  ],
   "scripts": {
-    "rm": "rm -rf dist/* types/*",
+    "rm:umd": "rm -rf dist/* && rm -rf types/*",
+    "rm:es": "rm -rf es/*",
+    "rm:cjs": "rm -rf lib/*",
+    "rm": "npm run rm:umd && npm run rm:es && npm run rm:cjs",
     "start": "npm run rm && webpack --config webpack.dev.js",
-    "compile": "npm run rm && webpack --config webpack.pkg.js"
+    "compile": "npm run compile:es && npm run compile:cjs && npm run compile:umd",
+    "compile:es": "npm run rm:es && tsc -p tsconfig.build.es.json",
+    "compile:cjs": "npm run rm:cjs && tsc -p tsconfig.build.cjs.json",
+    "compile:umd": "npm run rm:umd && webpack --config webpack.pkg.js"
   },
   "repository": {
     "type": "git",
-    "url": "url": "https://github.com/WestSecu/WestSecuAN.git"
+    "url": "https://github.com/WestSecu/westsecuan.git"
   },
   "keywords": [],
   "peerDependencies": {
-    "@westsecuan/vanilla": "~0.1.0",
+    "@westsecuan/vanilla": "~0.6.0-alpha.0",
     "vue": "^2.0.0"
   },
   "author": "",

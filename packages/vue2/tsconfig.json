@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./types/",
+    "target": "ES5",
+    "declaration": true,
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 09:22:53
- * @LastEditTime: 2022-02-17 09:49:44
+ * @LastEditTime: 2022-02-18 13:40:10
  * @LastEditors: 周长升
  * @Description:
  */
@@ -10,7 +10,7 @@ const utilPackageName = require("../../utils/package-name");
 
 const path = require("path");
 
-const pkgName = utilPackageName(path.resolve(__dirname, "package.json"));
+const pkgName = utilPackageName(require(path.resolve(__dirname, "package.json")).name);
 
 module.exports = {
   ...buildConfig,

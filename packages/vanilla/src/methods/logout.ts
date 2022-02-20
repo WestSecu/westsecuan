@@ -1,25 +1,25 @@
 /*
  * @Author: 周长升
- * @Date: 2022-02-18 00:49:03
- * @LastEditTime: 2022-02-19 11:40:58
+ * @Date: 2022-02-20 17:55:51
+ * @LastEditTime: 2022-02-20 18:17:33
  * @LastEditors: 周长升
  * @Description:
  */
 import { State } from "../state";
 import { logError } from "../utils";
 
-type RegisterPage = (obj: Record<string, unknown>) => void;
+type Logout = (isChangeId?: boolean) => void;
 
 /**
- * 注册页面
- * @param obj - 属性
+ * 登陆
+ * @param isChangeId - 是否重新标志
  */
-export const registerPage: RegisterPage = (obj: Record<string, unknown>) => {
+export const logout: Logout = (isChangeId = true) => {
   try {
     switch (State.sdk.type) {
       case "sensors":
         {
-          State.sdk.syncRef?.registerPage(obj);
+          State.sdk.syncRef?.logout(isChangeId);
         }
         break;
     }

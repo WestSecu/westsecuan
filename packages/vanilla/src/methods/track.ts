@@ -1,25 +1,58 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-18 00:42:50
- * @LastEditTime: 2022-02-18 00:42:51
+ * @LastEditTime: 2022-02-19 22:18:44
  * @LastEditors: 周长升
  * @Description:
  */
 import { State } from "../state";
-type Track = (name: string, ...args: unknown[]) => void;
+import { logError } from "../utils";
+import { findPageRefferer, findPagePath } from "../helpers";
+
+type Track = (trackType: TrackType, ...args: unknown[]) => void;
+
+export type TrackType = "pageview" | "click";
 
 /**
  * 追踪
- * @param name - 名称
+ * @param trackType - 名称
  * @param args - 参数
  */
-export const track: Track = (name, ...args) => {
-  switch (State.sdk?.type) {
-    case "sensors":
-      {
-        // @ts-ignore
-        State.sdk?.ref.track(name, ...args);
-      }
-      break;
+export const track: Track = (trackType: TrackType, ...args: unknown[]) => {
+  try {
+    switch (State.sdk.type) {
+      case "sensors":
+        {
+          const trackName =
+            {
+              pageview: "$pageview",
+              click: "$WebClick",
+            }[trackType] ?? trackType;
+
+          // 记录每次pageview，并查找refferer
+          if (trackType === "pageview" && window.location) {
+            const customProp = (args[0] || (args[0] = {})) as Record<
+              string,
+              unknown
+            >;
+            Object.assign(
+              customProp,
+              findPageRefferer(State.spaPageViewRefferer),
+              findPagePath()
+            );
+
+            State.spaPageViewRefferer = window.location.href;
+          }
+
+          State.sdk.syncRef?.track(
+            trackName,
+            // @ts-ignore
+            ...args
+          );
+        }
+        break;
+    }
+  } catch (e) {
+    logError(e);
   }
 };
