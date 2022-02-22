@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 22:47:39
- * @LastEditTime: 2022-02-20 20:38:00
+ * @LastEditTime: 2022-02-21 16:30:42
  * @LastEditors: 周长升
  * @Description:
  */
@@ -9,44 +9,44 @@ import { DirectiveFunction } from "vue";
 import { ClickTrackAttr } from "@westsecuan/vanilla";
 import { hasProp } from "../utils";
 
-interface ClickValueBase {
-  /** 目标为子元素的selector */
-  childSelector?: string;
-}
-
-interface ClickValueNormal extends ClickValueBase {
-  /** 内容 */
-  value: string;
-}
-
 /**
  * 当 binding value是对象时的模型
  */
-interface ClickValueForTopic extends ClickValueBase {
-  /** 主题 */
-  topics: string | string[];
+interface ClickValueForTopic {
+  /** 主题（topics 与 action 组合生成内容） */
+  topics?: string | string[];
 
-  /** 动作 */
-  action: string;
+  /** 动作（topics 与 action 组合生成内容） */
+  action?: string;
+
+  /** 内容 */
+  value?: string;
+
+  /** 目标为子元素的selector */
+  childSelector?: string;
+
+  /** 是否禁用，默认不禁用 */
+  disabled?: boolean;
 }
 
 export const click: DirectiveFunction = (el: HTMLElement, binding): void => {
   let value = "";
   let targetEle = el;
+  let disabled = false;
 
   if (typeof binding.value === "object") {
-    const obj: ClickValueForTopic | ClickValueNormal = binding.value ?? {};
-    if (hasProp(binding.value, "value")) {
-      const innerObj = obj as ClickValueNormal;
+    const obj: ClickValueForTopic = binding.value ?? {};
 
-      value = innerObj.value;
+    disabled = obj.disabled ?? disabled;
+
+    if (hasProp(obj, "value")) {
+      value = obj.value;
     } else if (hasProp(obj, "topics") && hasProp(obj, "action")) {
-      const innerObj = obj as ClickValueForTopic;
       const topics =
-        typeof innerObj.topics === "string"
-          ? [innerObj.topics]
-          : [...innerObj.topics];
-      const action = innerObj.action ?? "";
+        typeof obj.topics === "string"
+          ? [obj.topics]
+          : [...obj.topics];
+      const action = obj.action ?? "";
 
       value = [topics.join(">"), action].join(":");
     }
@@ -58,7 +58,9 @@ export const click: DirectiveFunction = (el: HTMLElement, binding): void => {
     value = binding.value ?? "";
   }
 
-  if (targetEle) {
+  if (targetEle && !disabled) {
     targetEle.setAttribute(ClickTrackAttr, value);
+  } else if (disabled) {
+    targetEle.removeAttribute(ClickTrackAttr);
   }
 };
