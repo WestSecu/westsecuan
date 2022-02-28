@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-16 14:42:41
- * @LastEditTime: 2022-02-20 20:09:16
+ * @LastEditTime: 2022-02-28 20:56:55
  * @LastEditors: 周长升
  * @Description:
  */
@@ -12,10 +12,13 @@ import {
   create,
   init,
   registerPage,
+  CreateOption,
 } from "@westsecuan/vanilla";
 
-import { click } from "./directives";
-import { spaPageView } from "./prototype";
+import { click, field, clickDisabled } from "./directives";
+import { spaPageView, inputSearch } from "./prototype";
+
+export * from "./directives";
 
 export type InstallOptions = {
   /**
@@ -33,8 +36,8 @@ export type InstallOptions = {
    */
   sdk: SDK;
 
-  /** 是否启用埋点（默认启用） */
-  enabled?: boolean;
+  /** 创建时配置项 */
+  createOption?: CreateOption;
 };
 
 /**
@@ -44,7 +47,7 @@ export type InstallOptions = {
  */
 export const install: PluginFunction<InstallOptions> = (v, options): void => {
   if (options) {
-    create(options.sdk, options.enabled);
+    create(options.sdk, options.createOption);
 
     registerPage({
       ...(options.registerPageParam ?? {}),
@@ -56,10 +59,17 @@ export const install: PluginFunction<InstallOptions> = (v, options): void => {
   }
 
   v.directive("westsecuan-click", click);
+  v.directive("westsecuan-module", field);
+  v.directive("westsecuan-click-disabled", clickDisabled);
   /**
    * 给vue实例添加可触发SPA PageView 函数
    */
   v.prototype.$westsecuanSPAView = spaPageView;
+
+  /**
+   * 给vue实例添加输入框搜索函数
+   */
+   v.prototype.$westsecuanInputSearch = inputSearch;
 };
 
 export default install;
@@ -67,5 +77,7 @@ export default install;
 declare module "vue/types/vue" {
   interface Vue {
     $westsecuanSPAView: typeof spaPageView;
+
+    $westsecuanInputSearch: typeof inputSearch;
   }
 }

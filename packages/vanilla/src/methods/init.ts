@@ -1,13 +1,14 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 15:02:03
- * @LastEditTime: 2022-02-20 20:39:22
+ * @LastEditTime: 2022-02-28 09:27:36
  * @LastEditors: 周长升
  * @Description:
  */
 import { State } from "../state";
-import { ClickTrackAttr } from "../sdk";
+import { ClickTrackAttr, ClickDisabledTrackAttr } from "../sdk";
 import { logError } from "../utils";
+import { findField } from "../helpers";
 import { InitParam } from "./init-para";
 
 type Init = (para: InitParam) => void;
@@ -33,6 +34,14 @@ export const init: Init = (para: InitParam) => {
               //是否开启触达注意力图，默认 default 表示开启，自动采集 $WebStay 事件，可以设置 'not_collect' 表示关闭
               scroll_notice_map: "default",
               track_attr: [ClickTrackAttr],
+              collect_element: function(element_target){
+                // 如果这个元素有属性禁用，不采集。
+                if(element_target.getAttribute(ClickDisabledTrackAttr) === 'true'){
+                  return false;
+                }else{
+                  return true;
+                }
+              },
               custom_property: (
                 element_target: HTMLElement
               ): Record<string, unknown> => {
@@ -60,6 +69,13 @@ export const init: Init = (para: InitParam) => {
                   if (eleVal) {
                     customProp["$element_content"] = eleVal;
                   }
+                }
+
+                // 是否要查找父级关联module名称
+                if (State.fundModule) {
+                  const result = findField(element_target)
+
+                  Object.assign(customProp, result);
                 }
 
                 return customProp;

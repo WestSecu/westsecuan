@@ -1,6 +1,6 @@
 {
   "name": "@westsecuan/vanilla",
-  "version": "0.6.0-alpha.1",
+  "version": "0.6.0-alpha.2",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,8 +28,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
-  "peerDependencies": {
-    "sa-sdk-javascript": "^1.21.7"
-  }
+  "license": "MIT"
 }

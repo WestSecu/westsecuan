@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest",
     "build": "npm run compile -ws",
-    "publish": "npm run publish --workspace --access public"
+    "publish": "npm publish --workspaces --access public"
   },
   "repository": {
     "type": "git",

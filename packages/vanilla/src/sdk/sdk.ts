@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 21:48:15
- * @LastEditTime: 2022-02-20 20:38:25
+ * @LastEditTime: 2022-02-28 22:56:37
  * @LastEditors: 周长升
  * @Description:
  */
@@ -15,23 +15,25 @@ type SensorSDK = {
   /**
    * 同步sdk引用
    */
-   syncRef?: Sensors;
-
-  /**
-   * 异步sdk source 标志
-   */
-  asyncSourceSymbol?: string;
-
-  /**
-   * 异步sdk target 标志
-   */
-  asyncTargetSymbol?: string;
+   syncRef?: Sensors | null;
 };
 
 /**
- * 埋点track标签的attr
+ * 埋点track标签的点击attr
  */
 export const ClickTrackAttr = "data-westsecuan-click";
+
+export const ClickDisabledTrackAttr = "data-westsecuan-click-disabled";
+
+/**
+ * 埋点track标签的模块attr
+ */
+export const TrackFieldAttr = "data-westsecuan-module";
+
+/**
+ * 埋点track标签的模块attr分隔符
+ */
+export const TrackFieldAttrSplit = ">";
 
 export type SDK = SensorSDK;
 export type SDKType = SensorSDKType;

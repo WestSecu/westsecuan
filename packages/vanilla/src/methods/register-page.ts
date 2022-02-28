@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-18 00:49:03
- * @LastEditTime: 2022-02-19 11:40:58
+ * @LastEditTime: 2022-02-28 20:21:03
  * @LastEditors: 周长升
  * @Description:
  */
@@ -19,7 +19,10 @@ export const registerPage: RegisterPage = (obj: Record<string, unknown>) => {
     switch (State.sdk.type) {
       case "sensors":
         {
-          State.sdk.syncRef?.registerPage(obj);
+          State.sdk.syncRef?.registerPage({
+            ...obj,
+            $user_agent: window.navigator?.userAgent ?? ''
+          });
         }
         break;
     }

@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 21:33:24
- * @LastEditTime: 2022-02-20 19:31:20
+ * @LastEditTime: 2022-02-24 13:57:21
  * @LastEditors: 周长升
  * @Description:
  */
@@ -20,6 +20,15 @@ export type StateType = {
 
   /** 是否启用埋点（默认启用） */
   enabled: boolean
+
+  /** 是否查询归属模块 */
+  fundModule: boolean;
+
+  /** 自定义属性前缀 */
+  customPropKeyPrefix: string;
+
+  /** 自定义事件前缀 */
+  customEventKeyPrefix: string;
 };
 
 /**
