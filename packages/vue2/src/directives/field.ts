@@ -1,12 +1,12 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-24 14:06:49
- * @LastEditTime: 2022-02-28 15:17:12
+ * @LastEditTime: 2022-03-01 17:27:26
  * @LastEditors: 周长升
  * @Description:
  */
 import { DirectiveFunction } from "vue";
-import { TrackFieldAttrSplit, TrackFieldAttr } from "@westsecuan/vanilla";
+import { TrackFieldAttrSplit, getFieldAttr } from "@westsecuan/vanilla";
 import { hasProp, findParentTarget } from "../utils";
 
 /**
@@ -49,8 +49,8 @@ const immediateField: DirectiveFunction = (el: HTMLElement, binding): void => {
     ) {
       const [firstSelector, secondSelector] = obj.valueParentSelector;
       value =
-        findParentTarget(el, firstSelector)?.querySelector(secondSelector)?.textContent ??
-        "";
+        findParentTarget(el, firstSelector)?.querySelector(secondSelector)
+          ?.textContent ?? "";
     } else if (hasProp(obj, "value") && obj.value != null) {
       value =
         typeof obj.value === "string"
@@ -68,7 +68,10 @@ const immediateField: DirectiveFunction = (el: HTMLElement, binding): void => {
   }
 
   if (targetEle) {
-    targetEle.setAttribute(TrackFieldAttr, value);
+    const attr = getFieldAttr(value);
+    Object.keys(attr).forEach((key) => {
+      targetEle.setAttribute(key, attr[key]);
+    });
   }
 };
 

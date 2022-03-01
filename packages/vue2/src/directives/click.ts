@@ -1,12 +1,12 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 22:47:39
- * @LastEditTime: 2022-02-27 00:32:11
+ * @LastEditTime: 2022-03-01 16:15:47
  * @LastEditors: 周长升
  * @Description:
  */
 import { DirectiveFunction } from "vue";
-import { ClickTrackAttr } from "@westsecuan/vanilla";
+import { ClickTrackAttr, getClickAttr } from "@westsecuan/vanilla";
 import { hasProp, findParentTarget } from "../utils";
 
 /**
@@ -75,7 +75,10 @@ const immediateClick: DirectiveFunction = (el: HTMLElement, binding): void => {
   }
 
   if (targetEle && !disabled) {
-    targetEle.setAttribute(ClickTrackAttr, value);
+    const attr = getClickAttr(value);
+    Object.keys(attr).forEach((key) => {
+      targetEle.setAttribute(key, attr[key]);
+    });
   } else if (disabled) {
     targetEle.removeAttribute(ClickTrackAttr);
   }
