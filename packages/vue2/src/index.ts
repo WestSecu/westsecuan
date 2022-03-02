@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-16 14:42:41
- * @LastEditTime: 2022-02-28 20:56:55
+ * @LastEditTime: 2022-03-02 10:50:06
  * @LastEditors: 周长升
  * @Description:
  */
@@ -13,12 +13,20 @@ import {
   init,
   registerPage,
   CreateOption,
+  UseName,
+  use,
 } from "@westsecuan/vanilla";
 
 import { click, field, clickDisabled } from "./directives";
 import { spaPageView, inputSearch } from "./prototype";
 
 export * from "./directives";
+
+export type OptionPlugin = {
+  name: UseName;
+
+  config?: Record<string, unknown>;
+};
 
 export type InstallOptions = {
   /**
@@ -38,6 +46,9 @@ export type InstallOptions = {
 
   /** 创建时配置项 */
   createOption?: CreateOption;
+
+  /** 插件配置项 */
+  plugins?: OptionPlugin[];
 };
 
 /**
@@ -56,6 +67,10 @@ export const install: PluginFunction<InstallOptions> = (v, options): void => {
     init({
       ...(options.initParam ?? {}),
     });
+
+    options.plugins?.forEach((plugin) => {
+      use(plugin.name, plugin.config);
+    });
   }
 
   v.directive("westsecuan-click", click);
@@ -69,7 +84,7 @@ export const install: PluginFunction<InstallOptions> = (v, options): void => {
   /**
    * 给vue实例添加输入框搜索函数
    */
-   v.prototype.$westsecuanInputSearch = inputSearch;
+  v.prototype.$westsecuanInputSearch = inputSearch;
 };
 
 export default install;
