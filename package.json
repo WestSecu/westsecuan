@@ -5,7 +5,7 @@
   "workspaces": [
     "./packages/*"
   ],
-  "description": "西部数据分析SDK",
+  "description": "an adapter for variety of  libraries tracking user actions",
   "scripts": {
     "test": "jest",
     "build": "npm run compile -ws",
@@ -17,7 +17,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "GNU GPL V3",
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.18",

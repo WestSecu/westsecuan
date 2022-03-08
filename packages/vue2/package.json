@@ -1,7 +1,7 @@
 {
   "name": "@westsecuan/vue2",
-  "version": "0.6.0-alpha.5",
-  "description": "",
+  "version": "0.6.0-rc.1",
+  "description": "an adapter of vue2 based on valinna javascript's",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "types/index.d.ts",
@@ -28,9 +28,9 @@
   },
   "keywords": [],
   "peerDependencies": {
-    "@westsecuan/vanilla": "~0.6.0-alpha.4",
+    "@westsecuan/vanilla": "~0.6.0-rc.1",
     "vue": "^2.0.0"
   },
   "author": "",
-  "license": "MIT"
+  "license": "GNU GPL V3"
 }

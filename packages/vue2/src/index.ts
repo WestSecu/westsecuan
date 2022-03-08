@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-16 14:42:41
- * @LastEditTime: 2022-03-02 10:50:06
+ * @LastEditTime: 2022-03-07 10:46:05
  * @LastEditors: 周长升
  * @Description:
  */
@@ -17,6 +17,7 @@ import {
   use,
 } from "@westsecuan/vanilla";
 
+import { exposureChild, exposurePanel } from "./components";
 import { click, field, clickDisabled } from "./directives";
 import { spaPageView, inputSearch } from "./prototype";
 
@@ -76,6 +77,8 @@ export const install: PluginFunction<InstallOptions> = (v, options): void => {
   v.directive("westsecuan-click", click);
   v.directive("westsecuan-module", field);
   v.directive("westsecuan-click-disabled", clickDisabled);
+  v.component("westsecuan-exposure-panel", exposurePanel);
+  v.component("westsecuan-exposure-child", exposureChild);
   /**
    * 给vue实例添加可触发SPA PageView 函数
    */

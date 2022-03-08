@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 21:42:53
- * @LastEditTime: 2022-03-02 10:40:23
+ * @LastEditTime: 2022-03-04 14:55:30
  * @LastEditors: 周长升
  * @Description:
  */
@@ -15,3 +15,4 @@ export { track } from "./track";
 export { logout } from "./logout";
 export * from "./search";
 export * from "./use";
+export * from "./exposure"

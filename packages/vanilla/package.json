@@ -1,7 +1,7 @@
 {
   "name": "@westsecuan/vanilla",
-  "version": "0.6.0-alpha.4",
-  "description": "",
+  "version": "0.6.0-rc.1",
+  "description": "an adapter of vanilla javascript for variety of libraries tracking user actions",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "types/index.d.ts",
@@ -28,5 +28,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "GNU GPL V3"
 }
