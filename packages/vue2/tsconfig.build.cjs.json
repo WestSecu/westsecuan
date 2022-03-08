@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "lib",
+    "declaration": false,
+    "target": "ES6",
+    "sourceMap": false,
+    "module": "CommonJS",
+    "esModuleInterop": false,
+    "removeComments": true
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}
