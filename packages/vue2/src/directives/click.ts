@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-17 22:47:39
- * @LastEditTime: 2022-03-01 16:15:47
+ * @LastEditTime: 2022-03-28 15:15:49
  * @LastEditors: 周长升
  * @Description:
  */
@@ -21,6 +21,8 @@ interface ClickValueForTopic {
 
   /** 内容 */
   value?: string;
+
+  valueSelector?: string;
 
   /** 目标为子元素的selector */
   childSelector?: string;
@@ -47,6 +49,8 @@ const immediateClick: DirectiveFunction = (el: HTMLElement, binding): void => {
 
     if (hasProp(obj, "value")) {
       value = obj.value;
+    } else if (hasProp(obj, "valueSelector")) {
+      value = el.querySelector(obj.valueSelector)?.textContent?.trim() ?? '';
     } else if (hasProp(obj, "topics") && hasProp(obj, "action")) {
       const topics =
         typeof obj.topics === "string" ? [obj.topics] : [...obj.topics];
