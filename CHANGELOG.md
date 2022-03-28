@@ -1,10 +1,20 @@
 <!--
  * @Author: 周长升
  * @Date: 2022-02-21 11:10:04
- * @LastEditTime: 2022-03-08 22:21:51
+ * @LastEditTime: 2022-03-28 20:17:54
  * @LastEditors: 周长升
  * @Description:
 -->
+
+# v0.6.0-rc.2（2022-03-28）
+
+### vue2
+
+| Commit | Type | Description |
+| -- | -- | -- |
+| [1033b36341](https://github.com/westSecu/westsecuan/commit/1033b363410dda4ae2eb36428de3102cd08d0f9a)  | feat | Add the selector for click of val |
+
+
 # v0.6.0-rc.1（2022-03-2）
 
 ### vanilla

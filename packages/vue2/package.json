@@ -1,6 +1,6 @@
 {
   "name": "@westsecuan/vue2",
-  "version": "0.6.0-rc.1",
+  "version": "0.6.0-rc.2",
   "description": "an adapter of vue2 based on valinna javascript's",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -12,9 +12,9 @@
     "lib"
   ],
   "scripts": {
-    "rm:umd": "rm -rf dist/* && rm -rf types/*",
-    "rm:es": "rm -rf es/*",
-    "rm:cjs": "rm -rf lib/*",
+    "rm:umd": "rimraf dist/* && rimraf types/*",
+    "rm:es": "rimraf es/*",
+    "rm:cjs": "rimraf lib/*",
     "rm": "npm run rm:umd && npm run rm:es && npm run rm:cjs",
     "start": "npm run rm && webpack --config webpack.dev.js",
     "compile": "npm run compile:es && npm run compile:cjs && npm run compile:umd",

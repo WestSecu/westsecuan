@@ -1,7 +1,7 @@
 /*
  * @Author: 周长升
  * @Date: 2022-02-24 14:06:49
- * @LastEditTime: 2022-03-01 17:27:26
+ * @LastEditTime: 2022-03-28 20:10:10
  * @LastEditors: 周长升
  * @Description:
  */
@@ -42,7 +42,7 @@ const immediateField: DirectiveFunction = (el: HTMLElement, binding): void => {
     const obj: FieldValue = binding.value ?? {};
 
     if (hasProp(obj, "valueChildSelector") && obj.valueChildSelector) {
-      value = el.querySelector(obj.valueChildSelector)?.textContent ?? "";
+      value = el.querySelector(obj.valueChildSelector)?.textContent?.trim() ?? "";
     } else if (
       obj.valueParentSelector instanceof Array &&
       obj.valueParentSelector.length === 2
@@ -50,7 +50,7 @@ const immediateField: DirectiveFunction = (el: HTMLElement, binding): void => {
       const [firstSelector, secondSelector] = obj.valueParentSelector;
       value =
         findParentTarget(el, firstSelector)?.querySelector(secondSelector)
-          ?.textContent ?? "";
+          ?.textContent?.trim() ?? "";
     } else if (hasProp(obj, "value") && obj.value != null) {
       value =
         typeof obj.value === "string"
